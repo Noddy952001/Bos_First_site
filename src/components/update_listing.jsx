@@ -7,10 +7,12 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
+
 // import Store from "../Redux/store"
 import  { useState } from "react"
 import { useDispatch , useSelector } from "react-redux"
 import axios from "axios"
+import { useParams } from "react-router-dom"
 
 import {
 change_city,
@@ -26,7 +28,7 @@ import { height } from '@mui/system';
 
 
 
-export  function AddListing() {
+export  function Update() {
 
   const dispatch = useDispatch()
   const value = useSelector((store => store) )
@@ -55,15 +57,16 @@ export  function AddListing() {
       ratting : +ratting
     } 
 
+    const {id} = useParams()
 
 
-    const hadelSubmit = () => {
+
+    const UpdateList = () => {
       console.log("text",data);
       
 
-          axios.post("https://refreshertest.herokuapp.com/listing",data).then(function(res){
-
-          alert("Add succesful")
+          axios.patch(`https://refreshertest.herokuapp.com/listing/${id}`,data).then(function(res){
+          alert("Update succesful")
            console.log("data",res.data)
           })
 
@@ -78,6 +81,7 @@ export  function AddListing() {
           //  console.log(register_data)
   };  
 
+ 
   
 
 
@@ -160,7 +164,7 @@ export  function AddListing() {
                 }} label="Rating" variant="outlined" /> <br />
           </Box>
 
-          <Button variant="contained" onClick={hadelSubmit} >Submit</Button>
+          <Button variant="contained" onClick={UpdateList} >Submit</Button>
     </div>
   );
 }

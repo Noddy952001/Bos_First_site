@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios" 
+import {Link} from "react-router-dom"
 
 export const Listing = () => {
 
@@ -84,6 +85,9 @@ export const Listing = () => {
 
     return (
             <div className="maindiv">
+                <Link to={"/addlisting"} > Add new pets </Link>
+
+                <Link to={"/admin"} > Addmin site</Link>
 
 
                 <div>
