@@ -6,6 +6,7 @@ export const Listing = () => {
 
     const [data ,setData] = useState()
     const [status , setStatus] = useState(true)
+    const [name , setName] = useState()
 
 
         React.useEffect(() => {
@@ -17,6 +18,13 @@ export const Listing = () => {
                } 
         },[])
         // console.log(data)
+
+
+        const Seacrh = () => {
+            axios.get(`https://refreshertest.herokuapp.com/listing/search/${name}`).then(function(res){
+                setData(res.data)  
+            })  
+        }
 
 
         const ShortByCost = () => {
@@ -85,6 +93,20 @@ export const Listing = () => {
 
     return (
             <div className="maindiv">
+
+                <input type="text"
+                 placeholder="Search" 
+                 onChange={(e) => {
+                     setName(e.target.value)
+                 }}
+                
+                 
+                />
+                <button
+                     onClick={Seacrh}
+                > search
+
+                </button>
                 <Link to={"/addlisting"} > Add new pets </Link>
 
                 <Link to={"/admin"} > Addmin site</Link>
@@ -114,10 +136,6 @@ export const Listing = () => {
                     </button>
                 </div>
 
-
-
-
-
             <table className="table">
                     <thead>
                         <tr>
@@ -129,7 +147,6 @@ export const Listing = () => {
                             <th  className="table">Cost per day</th>
                             <th  className="table">Verify</th>
                             <th  className="table">Rating</th>
-
 
                         </tr>
                     </thead>

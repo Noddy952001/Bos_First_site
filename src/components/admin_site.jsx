@@ -49,7 +49,6 @@ export const Admin_site = () => {
                             <th  className="table">Rating</th>
                             <th className="table">Update</th>
                             <th className="table">delete</th>
-
                         </tr>
                     </thead>
                     <tbody>
