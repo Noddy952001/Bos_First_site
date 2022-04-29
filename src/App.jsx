@@ -8,6 +8,7 @@ import { Routes , Route  } from 'react-router-dom'
 import {Admin_login} from "./components/admin_login"
 import {Admin_site} from "./components/admin_site"
 import {Update} from "./components/update_listing"
+import {Booking} from "./components/Booking"
 
 function App() {
   const [count, setCount] = useState(0)
@@ -20,8 +21,9 @@ function App() {
             <Route path='/admin' element={<Admin_login/>}></Route>
             <Route path='/admin_site' element={<Admin_site/>}></Route>
             <Route path='/addlisting' element={<AddListing/>}></Route>
-
             <Route path='/admin_site/:id' element={<Update/>}></Route>
+            <Route path='/booking' element={<Booking/>}></Route>
+
 
 
             

@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios" 
 import {Link} from "react-router-dom"
+import { useParams } from "react-router-dom";
 
 export const Listing = () => {
 
     const [data ,setData] = useState()
     const [status , setStatus] = useState(true)
     const [name , setName] = useState()
+    const [bookingid , setBookingid] = useState()
 
 
         React.useEffect(() => {
@@ -25,6 +27,15 @@ export const Listing = () => {
                 setData(res.data)  
             })  
         }
+
+        const  Booking = (el) => {
+
+            var newData = el
+
+                console.log("booking" , newData.name)
+
+        }
+
 
 
         const ShortByCost = () => {
@@ -107,11 +118,15 @@ export const Listing = () => {
                 > search
 
                 </button>
+
+
                 <Link to={"/addlisting"} > Add new pets </Link>
 
                 <Link to={"/admin"} > Addmin site</Link>
 
+                <Link to={"/booking"} >Booking Details</Link>
 
+                 
                 <div>
 
                     <button
@@ -147,12 +162,13 @@ export const Listing = () => {
                             <th  className="table">Cost per day</th>
                             <th  className="table">Verify</th>
                             <th  className="table">Rating</th>
-
+                            <th  className="table">Booking</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
                             data?.map((el,p) => {
+                             Booking(el)
                             return  (
                                 <tr>
                                     <td className="table">{p+1}</td>
@@ -163,7 +179,10 @@ export const Listing = () => {
                                     <td className="table" id="txt">{el.cost_per_day}</td>
                                     <td className="table" id="txt">{el.verified}</td>
                                     <td className="table" id="txt">{el.ratting}</td>
-                                    
+                                    <td className="table" id="txt"> <button
+                                        // onClick={}
+                                    >Book</button> </td>
+                                   
                                 </tr>
                             )
                             })
