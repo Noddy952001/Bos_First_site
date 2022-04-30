@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import axios from "axios" 
 import {Link} from "react-router-dom"
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux"
+import {change_booking_status} from "../Redux/action"
 
 export const Listing = () => {
-
+    const dispatch = useDispatch()
     const [data ,setData] = useState()
     const [status , setStatus] = useState(true)
     const [name , setName] = useState()
@@ -30,9 +32,13 @@ export const Listing = () => {
 
         const  Booking = (el) => {
 
-            var newData = el
+            axios.post("https://refreshertest.herokuapp.com/booking" , el ).then(function(res){
+                // setData(res.data)  
+                alert("suuces")
+            })
 
-                console.log("booking" , newData.name)
+            // dispatch(change_booking_status(el))
+            // console.log("booking")
 
         }
 
@@ -168,7 +174,7 @@ export const Listing = () => {
                     <tbody>
                         {
                             data?.map((el,p) => {
-                             Booking(el)
+                             
                             return  (
                                 <tr>
                                     <td className="table">{p+1}</td>
@@ -180,7 +186,9 @@ export const Listing = () => {
                                     <td className="table" id="txt">{el.verified}</td>
                                     <td className="table" id="txt">{el.ratting}</td>
                                     <td className="table" id="txt"> <button
-                                        // onClick={}
+                                        onClick={ () => {
+                                            Booking(el)
+                                        }}
                                     >Book</button> </td>
                                    
                                 </tr>

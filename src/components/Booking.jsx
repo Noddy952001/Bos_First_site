@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import axios from "axios" 
 import {Link} from "react-router-dom"
+import {useSelector} from "react-redux"
 
 export const Booking = () => {
 
+    
     const [data ,setData] = useState()
     const [status , setStatus] = useState(true)
     const [name , setName] = useState()
+    const booking_storee = useSelector((store) => 
+        store.booking_data
+    )
+
+    console.log("booking_storee",booking_storee)
 
 
         React.useEffect(() => {

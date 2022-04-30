@@ -12,6 +12,8 @@ export const Change_Email =  "Change_Email"
 export const Change_password  = "Change_password"
 export const Change_token =  "Change_token"
 
+export const Change_Bookind_Status = "Change_Bookind_Status"
+
 
 
 
@@ -78,5 +80,11 @@ export const conter_inc = (payload) => ({
 export const counter_dec = (payload) => ({
     type : Counter_Dec,
     payload
+})
+
+export const change_booking_status = (payload) => ({
+    type : Change_Bookind_Status,
+    payload
+
 })
  

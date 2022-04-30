@@ -1,6 +1,6 @@
 import { Change_name ,Change_city,Change_address,
     Counter_incr, Counter_Dec , Change_password ,Change_Email , Change_token,
-    Change_capacity,Change_cost_per_daya,Change_verified,Change_rating  } from "./action"
+    Change_capacity,Change_cost_per_daya,Change_verified,Change_rating  , Change_Bookind_Status } from "./action"
 
 const initalState = {
     name : "",
@@ -14,8 +14,10 @@ const initalState = {
     email : "",
     password : "" ,
     isAuth : false ,
-    token : ""
+    token : "",
+    booking_data : []
 }
+
 
 export  const Reducer = (store = initalState , {type , payload} ) => {
     // console.log( "stor",store)
@@ -51,7 +53,8 @@ export  const Reducer = (store = initalState , {type , payload} ) => {
             return({...store , password : payload})   
         case Change_token : 
             return ({...store , token : payload})
-        
+        case Change_Bookind_Status : 
+         return ({...store , booking_data : payload})
             
         default :
             return store        
