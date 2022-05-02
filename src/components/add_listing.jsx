@@ -45,6 +45,7 @@ export  function AddListing() {
     const [ratting , setRatting] = useState()
 
 
+
     const  data = {
       name : name,
       city : city,
@@ -161,6 +162,8 @@ export  function AddListing() {
           </Box>
 
           <Button variant="contained" onClick={hadelSubmit} >Submit</Button>
+
+       
     </div>
   );
 }

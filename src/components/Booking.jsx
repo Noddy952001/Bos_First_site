@@ -57,7 +57,7 @@ export const Booking = () => {
                                     <td className="table" id="txt">{el.cost_per_day}</td>
                                     <td className="table" id="txt">{el.verified}</td>
                                     <td className="table" id="txt">{el.ratting}</td>
-                                    <td className="table" id="txt"> pending </td>
+                                    <td className="table" id="txt"> {el.booking_status} </td>
                                 </tr>
                             )
                             })

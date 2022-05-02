@@ -8,20 +8,37 @@ import {change_booking_status} from "../Redux/action"
 export const Listing = () => {
     const dispatch = useDispatch()
     const [data ,setData] = useState()
+    const [filterData , setfilterData] = useState([])
     const [status , setStatus] = useState(true)
     const [name , setName] = useState()
     const [bookingid , setBookingid] = useState()
+    const [page, setPage] = useState(1);
+    const [count ,setCount] = useState(1)
+    var size = 4;
+
+    React.useEffect(() => {
+        getdata()
+        setCount()
+        setfilterData()
+    },[page])
 
 
-        React.useEffect(() => {
+    const getdata = () => {
+        axios.get("https://refreshertest.herokuapp.com/listing", {
+            params:{
+                size: size,
+                page: page
+            }
+        
+        }
+    ).then((res) => {
+        setData(res.data.listing);
+        setfilterData(res.data)
+        console.log("data_define",res.data)
+    }) 
+    };
 
-               if(data === undefined){
-                   axios.get("https://refreshertest.herokuapp.com/listing").then(function(res){
-                       setData(res.data)  
-                   })
-               } 
-        },[])
-        // console.log(data)
+
 
 
         const Seacrh = () => {
@@ -125,6 +142,8 @@ export const Listing = () => {
 
                 </button>
 
+                <Link to={"/"} >Home</Link>
+
 
                 <Link to={"/addlisting"} > Add new pets </Link>
 
@@ -174,7 +193,6 @@ export const Listing = () => {
                     <tbody>
                         {
                             data?.map((el,p) => {
-                             
                             return  (
                                 <tr>
                                     <td className="table">{p+1}</td>
@@ -197,6 +215,16 @@ export const Listing = () => {
                         }
                     </tbody>
             </table>
+
+            <div className="pagination">
+                <button className="btn" onClick={() => setPage((page) => page - 1)}>
+                  PREV
+                </button>
+                <button  className="btn"  onClick={() => setPage(page + 1)}>
+                    NEXT
+                </button >
+                <div>Current page: {page}</div>
+            </div>
 
         </div>
 
